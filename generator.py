@@ -17,8 +17,8 @@ def argument_parse():
 def read_file(filename):
 	return [ line.rstrip() for line in open(filename, 'r') ]
 
-def generate_gib(words, is_capital, limit):
-	capital = is_capital
+def generate_gib(words, limit):
+	capital = True
 
 	for i in range(0, limit):
 		if capital:
@@ -37,4 +37,4 @@ def generate_gib(words, is_capital, limit):
 
 if __name__ == "__main__":
 	args = argument_parse()
-	generate_gib( read_file( args.wordfile ), True, abs( args.limit ) )
+	generate_gib( read_file( args.wordfile ), abs( args.limit ) )
