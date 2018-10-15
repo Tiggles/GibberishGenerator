@@ -1,5 +1,5 @@
-#!/usr/bin/python
-#Built using python version 2.7
+#!/usr/bin/env python3
+#Built using python version 3!
 
 import argparse
 from random import *
@@ -19,25 +19,26 @@ def argument_parse():
 	return parser.parse_args()
 
 def read_file(filename):
-	return [ line.rstrip() for line in open(filename, 'r') ]
+	with open(filename, 'r') as filein:
+		return tuple( line.rstrip() for line in filein )
 
 def generate_gib(words, limit, plimit, slimit):
 	capital = True
 
 	for i in range(0, limit):
 		if capital:
-			print words[randint(0, len(words)) - 1].title(),
+			print(words[randint(0, len(words)) - 1].title(), end="")
 			capital = False
 		else:
-			print words[randint(0, len(words)) - 1],
+			print(words[randint(0, len(words)) - 1], end="")
 
 		if (randint(0, 1000) > abs(1000 - plimit)):
-			print '\b.\n'
+			print('\b.\n')
 			capital = True
 		elif (randint(0, 1000) > abs(1000 - slimit)):
-			print "\b.",
+			print("\b.", end="")
 			capital = True
-	print "\b.\n"
+	print("\b.\n")
 
 if __name__ == "__main__":
 	args = argument_parse()
